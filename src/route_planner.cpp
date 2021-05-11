@@ -21,8 +21,9 @@ RoutePlanner::RoutePlanner(RouteModel &model, float start_x, float start_y, floa
 // - You can use the distance to the end_node for the h value.
 // - Node objects have a distance method to determine the distance to another node.
 
-float RoutePlanner::CalculateHValue(RouteModel::Node const *node) {
-
+float RoutePlanner::CalculateHValue(RouteModel::Node const *node) 
+{
+    return node->distance(*end_node);
 }
 
 
@@ -33,7 +34,8 @@ float RoutePlanner::CalculateHValue(RouteModel::Node const *node) {
 // - Use CalculateHValue below to implement the h-Value calculation.
 // - For each node in current_node.neighbors, add the neighbor to open_list and set the node's visited attribute to true.
 
-void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) {
+void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) 
+{
 
 }
 
