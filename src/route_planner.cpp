@@ -37,7 +37,6 @@ float RoutePlanner::CalculateHValue(RouteModel::Node const *node)
 void RoutePlanner::AddNeighbors(RouteModel::Node *current_node) 
 {
     current_node->FindNeighbors();
-    
     for (auto i : current_node->neighbors)
     {
         if (i->visited == true)
@@ -84,13 +83,13 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
     std::vector<RouteModel::Node> path_found;
 
     // TODO: Implement your solution here.
-    RouteModel::Node * temp = current_node;
+    RouteModel::Node * tmp = current_node;
 
-    while(temp->parent != nullptr)
+    while(tmp->parent != nullptr)
     {
-        path_found.push_back(*temp);
-        distance += (temp->distance(*temp->parent));
-        temp = temp->parent;
+        path_found.push_back(*tmp);
+        distance += (tmp->distance(*tmp->parent));
+        tmp = tmp->parent;
     }    
     path_found.push_back(*start_node); //put the start node in the path found vector
     std::reverse(path_found.begin(), path_found.end());
@@ -117,7 +116,7 @@ void RoutePlanner::AStarSearch()
     {
         AddNeighbors(current_node);
         current_node = NextNode();
-        if ((current_node->x == end_node->x) && (current_node->y == end_node->y))
+        if (current_node == end_node)
         {
             m_Model.path = ConstructFinalPath(current_node);
         }
